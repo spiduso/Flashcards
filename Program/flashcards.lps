@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="10"/>
+    <BuildModes Active="Default"/>
+    <Units Count="2">
+      <Unit0>
+        <Filename Value="flashcards.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="656"/>
+        <CursorPos X="35" Y="445"/>
+        <FoldState Value=" T3W2A4 pjTk82+2]9elN2e3 pkOlV2B1:"/>
+        <UsageCount Value="35"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="..\18-02\project1.lpr"/>
+        <UnitName Value="Flashcards"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="431"/>
+        <CursorPos X="5" Y="468"/>
+        <UsageCount Value="9"/>
+      </Unit1>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="296" TopLine="162"/>
+      </Position1>
+      <Position2>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="301" TopLine="162"/>
+      </Position2>
+      <Position3>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="303" TopLine="162"/>
+      </Position3>
+      <Position4>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="347" Column="20" TopLine="324"/>
+      </Position4>
+      <Position5>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="351" TopLine="324"/>
+      </Position5>
+      <Position6>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="280" Column="30" TopLine="21"/>
+      </Position6>
+      <Position7>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="122" Column="21" TopLine="21"/>
+      </Position7>
+      <Position8>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="82" Column="51" TopLine="61"/>
+      </Position8>
+      <Position9>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="581" Column="23" TopLine="57"/>
+      </Position9>
+      <Position10>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="444" Column="27" TopLine="169"/>
+      </Position10>
+      <Position11>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="458" TopLine="169"/>
+      </Position11>
+      <Position12>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="459" TopLine="169"/>
+      </Position12>
+      <Position13>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="460" TopLine="169"/>
+      </Position13>
+      <Position14>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="461" TopLine="169"/>
+      </Position14>
+      <Position15>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="464" TopLine="169"/>
+      </Position15>
+      <Position16>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="466" TopLine="234"/>
+      </Position16>
+      <Position17>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="467" TopLine="235"/>
+      </Position17>
+      <Position18>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="468" TopLine="286"/>
+      </Position18>
+      <Position19>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="469" TopLine="287"/>
+      </Position19>
+      <Position20>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="470" TopLine="364"/>
+      </Position20>
+      <Position21>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="471" TopLine="365"/>
+      </Position21>
+      <Position22>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="464" TopLine="365"/>
+      </Position22>
+      <Position23>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="466" TopLine="365"/>
+      </Position23>
+      <Position24>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="467" TopLine="365"/>
+      </Position24>
+      <Position25>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="468" TopLine="365"/>
+      </Position25>
+      <Position26>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="469" TopLine="365"/>
+      </Position26>
+      <Position27>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="470" TopLine="365"/>
+      </Position27>
+      <Position28>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="471" TopLine="365"/>
+      </Position28>
+      <Position29>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="464" TopLine="365"/>
+      </Position29>
+      <Position30>
+        <Filename Value="flashcards.lpr"/>
+        <Caret Line="473" TopLine="407"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="5">
+      <Item1>
+        <Expression Value="reading"/>
+      </Item1>
+      <Item2>
+        <Expression Value="section"/>
+      </Item2>
+      <Item3>
+        <Expression Value="i"/>
+      </Item3>
+      <Item4>
+        <Expression Value="valword"/>
+      </Item4>
+      <Item5>
+        <Expression Value="input"/>
+      </Item5>
+    </Watches>
+  </Debugging>
+</CONFIG>
