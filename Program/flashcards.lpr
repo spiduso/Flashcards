@@ -664,12 +664,15 @@ var
     section: string;
   begin
     section := ChooseSection;
+    if section <> '' then
+    begin
     FirstCard := PrepareGame(section);
     ClrScr;
 
     if gameplay(False) = True then
       gameplay(True);
 
+    end;
   end;
 
   procedure LoadFile();
