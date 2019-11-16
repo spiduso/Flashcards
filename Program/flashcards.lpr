@@ -235,54 +235,139 @@ var
   procedure InsertSection();
   var
     reading, SectionName: string;
+    succ   : Boolean = false;
+    beggining, card: PFlash;
   begin
-    AssignFile(main, 'main.txt');
-    AssignFile(temp, 'temp.txt');
-    Rewrite(temp);
-    Reset(main);
-
-    readln(main, reading);
-    writeln(temp, reading);
-    readln(main, reading);
-    while (not EOF(main)) and (reading <> '.') do
-    begin
-      writeln(temp, reading);
-      readln(main, reading);
-    end;
+   // Read words from input
+    writeln('exit to Menu with "exit."');
+    writeln;
 
     writeln('Insert name of your new section');
     readln(SectionName);
-    writeln(temp, SectionName);
-    writeln(temp, '.');
-    writeln;
 
+    AssignFile(main, 'main.txt');
+    Reset(main);
     readln(main, reading);
-    while (not EOF(main)) and (reading <> '#') do
+    readln(main, reading);
+
+    if (SectionName <> 'exit.') and (SectionName <> '') then
     begin
-      writeln(temp, reading);
-      readln(main, reading);
+      succ := true;
+      while (not EOF(main)) and (reading <> '.') do
+      begin
+        if reading = SectionName then
+           succ := false;
+        readln(main, reading);
+      end;
     end;
-    writeln(temp, reading, SectionName);
+
+    Reset(main);
+    readln(main, reading);
+    readln(main, reading);
+
+    writeln('Given name for section already exists, please choose different one');
+    readln(SectionName);
+
+    if (SectionName <> 'exit.') and (SectionName <> '') then
+    begin
+      succ := true;
+      while (not EOF(main)) and (reading <> '.') do
+      begin
+        if reading = SectionName then
+           succ := false;
+        readln(main, reading);
+      end;
+    end;
 
     writeln('exit insert mode with "end."');
     writeln;
-    writeln('Write front side of your card');
-    readln(reading);
-    while reading <> 'end.' do
+    if succ = true then
     begin
-      Write(temp, reading, '-->');
-      writeln('Write back side of your card');
-      readln(reading);
-      writeln(temp, reading);
       writeln('Write front side of your card');
       readln(reading);
+
+      if (reading <> 'end.') and (reading <> 'exit.') then
+      begin
+          new(card);
+          beggining := card;
+          card^.Front := reading;
+
+          writeln('Write back side of your card');
+          readln(reading);
+          card^.Back := reading;
+      end;
+
+      while (reading <> 'end.') and (reading <> 'exit.') do
+      begin
+        new(card^.Next);
+        card := card^.Next;
+        writeln('Write front side of your card');
+        readln(reading);
+
+        if (reading <> 'end.') and (reading <> 'exit.') then
+        begin
+          card^.Front := reading;
+
+          writeln('Write back side of your card');
+          readln(reading);
+          if (reading <> 'end.') and (reading <> 'exit.') then
+          begin
+            card^.Back := reading;
+          end;
+        end;
+      end;
+      card^.Next := nil;
+
+      if reading = 'exit.' then
+         succ := false;
     end;
-    writeln(temp, '#');
-    Close(main);
-    Close(temp);
-    SwitchNames();
-    Writeln('Saved!');
+
+    if succ = true then    // Write to file if succesful
+    begin
+      AssignFile(main, 'main.txt');
+      AssignFile(temp, 'temp.txt');
+      Rewrite(temp);
+      Reset(main);
+
+      readln(main, reading);
+      writeln(temp, reading);
+      readln(main, reading);
+
+      while (not EOF(main)) and (reading <> '.') do
+      begin
+        writeln(temp, reading);
+        readln(main, reading);
+      end;
+
+      writeln(temp, SectionName);
+      writeln(temp, '.');
+      writeln;
+
+      readln(main, reading);
+      while (not EOF(main)) and (reading <> '#') do
+      begin
+        writeln(temp, reading);
+        readln(main, reading);
+      end;
+      writeln(temp, reading, SectionName);
+
+      card := beggining;
+      while (card <> nil) and (card^.Back <> '') and (reading <> 'end.') and (SectionName <> 'end.') do
+      begin
+
+        Write(temp, card^.Front, '-->');
+        writeln(temp, card^.Back);
+
+        card := card^.Next;
+      end;
+
+      writeln(temp, '#');
+      Close(main);
+      Close(temp);
+      SwitchNames();
+      Writeln('Saved!');
   end;
+ end;
 
   procedure RenameSection();
   var
@@ -447,7 +532,7 @@ var
     First, ListOfSections: PList;
     ChosenSection, i, counter: integer;
     reading: string;
-  begin
+    begin
     Assign(main, 'main.txt');
     Reset(main);
     counter := 1;
@@ -472,13 +557,22 @@ var
     end;
     ListOfSections^.Next := nil;
 
+    Writeln('0 Back to Menu');
     readln(ChosenSection);
 
-    for i := 1 to ChosenSection do
+    if ChosenSection <> 0 then
     begin
-      First := First^.Next;
-    end;
-    Result := First^.Name;
+         for i := 1 to ChosenSection do
+             begin
+                  First := First^.Next;
+             end;
+         if First <> nil then
+            Result := First^.Name
+         else
+             Result := '';
+    end
+    else
+    Result := '';
     Close(main);
   end;
 
@@ -583,25 +677,40 @@ var
     reading, filename: string;
     loading: TextFile;
   begin
-    Assign(main, 'main.txt');
-    Assign(temp, 'temp.txt');
-    Reset(main);
-    Rewrite(temp);
-
+    Writeln('Write "exit." to exit to Menu');
+    Writeln;
     Writeln('Move file to this directory, press enter to continue');
-    readln;
-    Writeln('write name of your text file (without ".txt")');
     readln(filename);
-    Assign(loading, filename + '.txt');
-    Reset(loading);
-
-    Writeln('Select name for your section');
+    if(filename <> 'exit.') then
+    begin
+    Writeln('write name of your text file');
     readln(filename);
 
-    readln(main, reading);
-    writeln(temp, reading);
+    If (not FileExists(filename)) and (filename <> 'exit.') then
+    begin
+      Writeln('File does not exist! Move file and enter name, or exit');
+      readln(filename);
+    end;
 
-    readln(main, reading);
+    if (filename <> 'exit.') and (FileExists(filename)) then
+    begin
+      Writeln('Select name for your section');
+
+      Assign(loading, filename);
+      Reset(loading);
+      readln(filename);
+
+      if(filename <> 'exit.') then
+      begin
+
+        Assign(main, 'main.txt');
+        Assign(temp, 'temp.txt');
+        Reset(main);
+        Rewrite(temp);
+        readln(main, reading);
+        writeln(temp, reading);
+
+        readln(main, reading);
     while ((not EOF(main)) and (reading <> '.')) do
     begin
       writeln(temp, reading);
@@ -616,8 +725,6 @@ var
     end;
     writeln(temp, '#' + filename);
 
-
-
     while (not EOF(loading)) do
     begin
       readln(loading, reading);
@@ -630,6 +737,10 @@ var
     Close(loading);
     SwitchNames;
     writeln('Finished');
+      end;
+  end;
+end;
+
   end;
 
 begin
@@ -652,6 +763,8 @@ begin
       begin
         section := ChooseSection;
         ClrScr;
+        if section <> '' then
+        begin
         PrintSection(section);
         Writeln('What now?');
         Writeln('1 Edit word');
@@ -659,6 +772,7 @@ begin
         Writeln('3 Delete word');
         Writeln('4 Rename section');
         Writeln('5 Delete section');
+        Writeln('0 Back to Menu');
         readln(ValEdit);
         case ValEdit of
           '1': EditWordInSection;
@@ -666,6 +780,9 @@ begin
           '3': DeleteWordInSection;
           '4': RenameSection;
           '5': DeleteSection(section);
+          else
+            section := '';
+        end;
         end;
       end;
       '3': // Load Section
@@ -673,6 +790,7 @@ begin
         Writeln('Choose type of loading');
         Writeln('1 Load manually');
         Writeln('2 Import from text file');
+        Writeln('0 Back to Menu');
         readln(i);
         case i of
           '1': InsertSection;
